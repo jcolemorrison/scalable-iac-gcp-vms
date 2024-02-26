@@ -36,7 +36,7 @@ resource "google_compute_region_instance_group_manager" "server" {
   base_instance_name = "${var.project_name}-instance-${var.deployment_regions[count.index]}"
   region             = var.deployment_regions[count.index]
   version {
-    instance_template = google_compute_instance_template.server.self_link
+    instance_template = element(google_compute_instance_template.server.*.self_link, count.index)
   }
 
   target_size = 2

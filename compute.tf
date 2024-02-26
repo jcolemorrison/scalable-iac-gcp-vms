@@ -1,6 +1,8 @@
 // Instance template that defines the properties for each instance in the instance group
 resource "google_compute_instance_template" "server" {
-  name_prefix  = "instance-template"
+  count = length(var.deployment_regions)
+
+  name_prefix  = "instance-template-${var.deployment_regions[count.index]}"
   machine_type = "n1-standard-1"
 
   disk {
@@ -10,7 +12,7 @@ resource "google_compute_instance_template" "server" {
   }
 
   network_interface {
-    network = google_compute_network.vpc_network.self_link
+    subnetwork = element(google_compute_subnetwork.subnet.*.self_link, count.index)
   }
 
   metadata = {

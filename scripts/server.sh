@@ -17,7 +17,7 @@ After=syslog.target network.target
 [Service]
 Environment="MESSAGE='Hello from the Test Server Service'"
 Environment="NAME=server"
-Environment="LISTEN_ADDR=0.0.0.0:27017"
+Environment="LISTEN_ADDR=0.0.0.0:80"
 ExecStart=/usr/local/bin/fake-service
 ExecStop=/bin/sleep 5
 Restart=always

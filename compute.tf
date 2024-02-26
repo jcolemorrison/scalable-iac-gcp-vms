@@ -58,7 +58,8 @@ resource "google_compute_backend_service" "backend" {
     for_each = google_compute_region_instance_group_manager.server
     content {
       group = backend.value.instance_group
-      balancing_mode = "RATE"
+      balancing_mode = "UTILIZATION"
+      max_utilization = 0.8
       capacity_scaler = 1
     }
   }

@@ -33,7 +33,7 @@ resource "google_compute_router_nat" "cloud_nat" {
 
   subnetwork {
     name                    = element(google_compute_subnetwork.subnet.*.self_link, count.index)
-    source_ip_ranges_to_nat = "ALL_IP_RANGES"
+    source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
 

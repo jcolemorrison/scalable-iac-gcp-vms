@@ -1,7 +1,7 @@
 variable "project_name" {
   description = "default project name"
   type        = string
-  default     = "next-2024"
+  default     = "scalable-iac-gcp-vms"
 }
 
 variable "default_region" {

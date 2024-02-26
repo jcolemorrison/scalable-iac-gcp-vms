@@ -27,8 +27,14 @@ resource "google_compute_router_nat" "cloud_nat" {
   count   = length(var.deployment_regions)
   name    = format("cloud-nat-%d", count.index + 1)
   router  = element(google_compute_router.router.*.name, count.index)
+  region  = element(var.deployment_regions, count.index)
   nat_ip_allocate_option = "AUTO_ONLY"
-  source_subnetwork_ip_ranges_to_nat = element(google_compute_subnetwork.subnet.*.self_link, count.index)
+  source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
+
+  subnetwork {
+    name                    = element(google_compute_subnetwork.subnet.*.self_link, count.index)
+    source_ip_ranges_to_nat = "ALL_IP_RANGES"
+  }
 }
 
 # Create a firewall rule that allows traffic on port 80

@@ -1,5 +1,10 @@
+variable "gcp_project_id" {
+  description = "The ID of the GCP project"
+  type        = string
+}
+
 variable "project_name" {
-  description = "default project name"
+  description = "default project name for grouping resources"
   type        = string
   default     = "scalable-iac-gcp-vms"
 }

@@ -53,6 +53,7 @@ resource "google_compute_backend_service" "backend" {
   protocol    = "HTTP"
   timeout_sec = 10
   enable_cdn  = false
+  load_balancing_scheme = "EXTERNAL_MANAGED"
 
   dynamic "backend" {
     for_each = google_compute_region_instance_group_manager.server

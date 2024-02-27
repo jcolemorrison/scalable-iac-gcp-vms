@@ -79,16 +79,16 @@ resource "google_compute_health_check" "default" {
 }
 
 // URL map that maps URLs to backend services
-resource "google_compute_url_map" "url_map" {
-  name            = "url-map"
-  default_service = google_compute_backend_service.backend.self_link
-}
+# resource "google_compute_url_map" "url_map" {
+#   name            = "url-map"
+#   default_service = google_compute_backend_service.backend.self_link
+# }
 
 // HTTP proxy that uses the URL map to route incoming requests
-resource "google_compute_target_http_proxy" "proxy" {
-  name    = "http-proxy"
-  url_map = google_compute_url_map.url_map.self_link
-}
+# resource "google_compute_target_http_proxy" "proxy" {
+#   name    = "http-proxy"
+#   url_map = google_compute_url_map.url_map.self_link
+# }
 
 // Global forwarding rule that forwards incoming traffic to the HTTP proxy
 resource "google_compute_global_forwarding_rule" "forwarding_rule" {

@@ -92,7 +92,8 @@ resource "google_compute_target_http_proxy" "proxy" {
 
 // Global forwarding rule that forwards incoming traffic to the HTTP proxy
 resource "google_compute_global_forwarding_rule" "forwarding_rule" {
-  name       = "forwarding-rule"
-  target     = google_compute_target_http_proxy.proxy.self_link
-  port_range = "80"
+  name                = "forwarding-rule"
+  target              = google_compute_target_http_proxy.proxy.self_link
+  port_range          = "80"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
 }
